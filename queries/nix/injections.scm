@@ -7,7 +7,7 @@
 		(indented_string_expression (string_fragment) @fish)
 	]
   (#nix-path? @_path "programs" "fish")
-) @combined
+)
 
 (binding
   attrpath: (_) @_path (#match? @_path "functions$")
@@ -23,4 +23,4 @@
     )
   )
   (#nix-path? @_path "programs" "fish")
-) @combined
+)
