@@ -1,6 +1,6 @@
 local M = {}
 
-local function path_diff(node_path, target_path)
+local function path_diff(target_path, node_path)
 	local is_match = false
 
 	while true do
@@ -23,13 +23,12 @@ function M.setup(_)
 
 		while node do
 			if #target_path == 0 then
-				vim.print("success")
 				return true
 			end
 			if node:type() == "binding" then
 				local path_node = node:field("attrpath")[1]
 				local path_str = vim.treesitter.get_node_text(path_node, bufnr)
-				local is_match = path_diff(vim.split(path_str, ".", { plain = true }), target_path)
+				local is_match = path_diff(target_path, vim.split(path_str, ".", { plain = true }))
 				if not is_match then
 					return false
 				end
