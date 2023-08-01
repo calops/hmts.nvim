@@ -1,5 +1,9 @@
 ;; extends
 
+;; Generic
+
+
+;; Fish
 (binding
   attrpath: (_) @_path (#match? @_path "((interactive|login)S|s)hellInit$")
   expression: [
