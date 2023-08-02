@@ -10,6 +10,7 @@ Manager configuration `nix` file.
 ## Installation
 
 Install `calops/hmts.nvim` with your favorite package manager.
+
 **Example with `lazy.nvim`**:
 ```lua
 {
@@ -29,6 +30,12 @@ files.
 
 No. No, you don't need to call a `setup()` function. But there's still one (that does nothing) if you really feel
 compelled to. It won't break anything.
+
+## Contribute
+
+Very few programs are handled right now, but I welcome any addition. Just look through 
+[the injections file](./queries/nix/injections.scm) and copy what's already there. It should be pretty straightforward 
+for most things. If it isn't, don't hesitate to open an issue.
 
 ## TODO
 
