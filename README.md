@@ -16,7 +16,7 @@ to inject the actual language used within the screen, enabling proper highlighti
 Here's an example of the difference it can make:
 | Default behavior | With hmts.nvim |
 |------------------|-------------------------|
-|![image](https://github.com/calops/hmts.nvim/assets/4097716/cb71e7e2-f85c-4380-b2ff-127738230d63) | ![image](https://github.com/calops/hmts.nvim/assets/4097716/220cd490-9bf2-44e8-962e-59f548861cf4) |
+|![image](https://github.com/calops/hmts.nvim/assets/4097716/cb71e7e2-f85c-4380-b2ff-127738230d63)|![image](https://github.com/calops/hmts.nvim/assets/4097716/220cd490-9bf2-44e8-962e-59f548861cf4)|
 
 ## Requirements
 
