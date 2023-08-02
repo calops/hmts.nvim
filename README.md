@@ -13,6 +13,11 @@ to inject the actual language used within the screen, enabling proper highlighti
 > The default `nix` queries from the nvim-treesitter first-party plugin do come with a few injections, but only the
 > trivial ones. Properly detecting more complex stuff requires some lua code, which is what is done in hmts.nvim.
 
+Here's an example of the difference it can make:
+| Default behavior | With hmts.nvim |
+|------------------|-------------------------|
+|![image](https://github.com/calops/hmts.nvim/assets/4097716/cb71e7e2-f85c-4380-b2ff-127738230d63) | ![image](https://github.com/calops/hmts.nvim/assets/4097716/220cd490-9bf2-44e8-962e-59f548861cf4) |
+
 ## Requirements
 
 - Neovim `0.9` (probably works on older versions, if anybody wants to check)
