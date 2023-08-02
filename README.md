@@ -1,6 +1,17 @@
 # hmts.nvim
+
 This neovim plugin allows (thanks to treesitter) highlighting languages contained in strings in various places of a Home
 Manager configuration `nix` file.
+
+## What it does
+
+Often in a nix configuration, and in particular with home manager, you find yourself inlining files in arbitrary
+languages as strings. This, by default, gets highlighted as a plain, boring string. This plugin uses treesitter queries
+to inject the actual language used within the screen, enabling proper highlighting of the language within.
+
+> [!Note]
+> The default `nix` queries from the nvim-treesitter first-party plugin do come with a few injections, but only the
+> trivial ones. Properly detecting more complex stuff requires some lua code, which is what is done in hmts.nvim.
 
 ## Requirements
 
@@ -18,6 +29,10 @@ Install `calops/hmts.nvim` with your favorite package manager.
     ft = "nix",
 }
 ```
+
+## Configuration
+
+You're done already.
 
 ## Usage
 
