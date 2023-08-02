@@ -31,7 +31,7 @@
 
 ; Bash
 (binding
-  attrpath: (_) @_path (#match? @_path "((init|logout|profile|bashrc)Extra$")
+  attrpath: (_) @_path (#match? @_path "(init|logout|profile|bashrc)Extra$")
   expression: (_ (string_fragment) @bash)
   ; TODO: find a way to have proper regex support here
   (#hmts-path? @_path "programs" "bash" ".*")
@@ -40,7 +40,7 @@
 ; Zsh
 (binding
   ; eww
-  attrpath: (_) @_path (#match? @_path "(completionInit|envExtra|initExtra|initExtraBeforeCompInit|initExtraFirst|loginExtra|logoutExtra|profileExtra))$")
+  attrpath: (_) @_path (#match? @_path "(completionInit|envExtra|initExtra|initExtraBeforeCompInit|initExtraFirst|loginExtra|logoutExtra|profileExtra)$")
   expression: (_ (string_fragment) @bash)
   ; TODO: find a way to have proper regex support here
   (#hmts-path? @_path "programs" "bash" ".*")
