@@ -6,6 +6,15 @@
   expression: (_
     (string_fragment) @injection.content
   )
+  (#hmts-path? @_path "home" "file" ".*" "text")
+  (#hmts-inject! @_path)
+) @combined
+
+(binding
+  attrpath: (_) @_path
+  expression: (_
+    (string_fragment) @injection.content
+  )
   (#hmts-path? @_path "xdg" "configFile" ".*" "text")
   (#hmts-inject! @_path)
 ) @combined
