@@ -88,9 +88,9 @@ local function hmts_inject_handler(match, _, bufnr, predicate, metadata)
 	metadata["injection.language"] = lang
 end
 
-function M.setup(_)
-	vim.treesitter.query.add_predicate("hmts-path?", hmts_path_handler)
-	vim.treesitter.query.add_directive("hmts-inject!", hmts_inject_handler)
-end
+vim.treesitter.query.add_predicate("hmts-path?", hmts_path_handler)
+vim.treesitter.query.add_directive("hmts-inject!", hmts_inject_handler)
+
+function M.setup(_) end
 
 return M
