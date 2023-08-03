@@ -23,6 +23,10 @@ Here's an example of the difference it can make:
 - Neovim `0.9` (probably works on older versions, if anybody wants to check)
 - Have [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) enabled
 
+> [!Important]
+> Make sure all the languages you embed are *actually installed in treesitter*, with `:TSInstall`. Don't be me, don't
+> spend hours trying to figure out while your injections don't work when the parsers aren't even installed.
+
 ## Installation
 
 Install `calops/hmts.nvim` with your favorite package manager.
@@ -59,8 +63,8 @@ for most things. If it isn't, don't hesitate to open an issue.
 
 ## TODO
 
-- [ ] Check the stuff that's already done on the to-do list
 - [ ] Better description in the readme
 - [ ] Screenshots in the readme
 - [ ] Benchmark the performance impact and see if the queries can be optimized
+- [ ] Check the stuff that's already done on the to-do list
 - [ ] Add stuff to the todo list
