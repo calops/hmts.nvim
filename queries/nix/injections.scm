@@ -19,6 +19,16 @@
   (#hmts-inject! @_path)
 ) @combined
 
+(
+  (indented_string_expression
+    (string_fragment) @_lang (#lua-match? @_lang "^%s*#!.*/.") ; use lua regex for consistency with the next line
+    (_)*
+  ) @injection.content
+  (#gsub! @_lang ".*#!%s*%S*/(%S+).*" "%1")
+  (#inject-language! @_lang)
+  (#offset! @injection.content 0 2 0 -2)
+) @combined
+
 ; Fish
 (binding
   attrpath: (_) @_path (#match? @_path "((interactive|login)S|s)hellInit$")
