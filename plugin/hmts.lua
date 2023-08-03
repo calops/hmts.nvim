@@ -1,12 +1,12 @@
 local function path_diff(target_path, node_path)
 	local is_match = false
+	local function regex_match(pattern, str)
+		local regex = vim.regex(pattern)
+		return regex:match_str(str)
+	end
 
 	while true do
-		if
-			#node_path == 0
-			or #target_path == 0
-			or string.match(node_path[#node_path], target_path[#target_path]) == nil
-		then
+		if #node_path == 0 or #target_path == 0 or regex_match(target_path[#target_path], node_path[#node_path]) then
 			break
 		end
 		is_match = true
