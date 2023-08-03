@@ -35,9 +35,15 @@ Install `calops/hmts.nvim` with your favorite package manager.
 ```lua
 {
     "calops/hmts.nvim",
+    version = "*",
     ft = "nix",
 }
 ```
+
+> [!Note]
+> It is recommended to follow *releases* (all numbered with a semver tag, looking like `vX.X.X`) instead of the raw
+> `main` branch, as things are expected to break occasionally there. This is done in `lazy.nvim` with `version = *` (you
+> can choose a more specific version if you prefer).
 
 ## Configuration
 
