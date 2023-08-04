@@ -1,12 +1,37 @@
-local function path_diff(target_path, node_path)
-	local is_match = false
-	local function regex_match(pattern, str)
-		local regex = vim.regex(pattern)
-		return regex:match_str(str)
+local function get_regex(pattern)
+	local magic_prefixes = { ["\\v"] = true, ["\\m"] = true, ["\\M"] = true, ["\\V"] = true }
+	local function check_magic(str)
+		if string.len(str) < 2 or magic_prefixes[string.sub(str, 1, 2)] then
+			return str
+		end
+		return "\\v" .. str
 	end
 
+	local compiled_vim_regexes = setmetatable({}, {
+		__index = function(t, pat)
+			local res = vim.regex(check_magic(pat))
+			rawset(t, pat, res)
+			return res
+		end,
+	})
+
+	return compiled_vim_regexes[pattern]
+end
+
+local function regex_match(pattern, str)
+	local regex = get_regex(pattern)
+	return regex:match_str(str) ~= nil
+end
+
+local function path_diff(target_path, node_path)
+	local is_match = false
+
 	while true do
-		if #node_path == 0 or #target_path == 0 or regex_match(target_path[#target_path], node_path[#node_path]) then
+		if
+			#node_path == 0
+			or #target_path == 0
+			or not regex_match(target_path[#target_path], node_path[#node_path])
+		then
 			break
 		end
 		is_match = true

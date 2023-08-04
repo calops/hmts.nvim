@@ -1,6 +1,6 @@
 ;; extends
 
-; Generic
+; home.file.*.text
 (binding
   attrpath: (_) @_path
   expression: (_
@@ -10,6 +10,7 @@
   (#hmts-inject! @_path)
 ) @combined
 
+; xdg.configFile.*.text
 (binding
   attrpath: (_) @_path
   expression: (_
@@ -19,6 +20,9 @@
   (#hmts-inject! @_path)
 ) @combined
 
+; ''
+; #! /bin/lang
+; ''
 (
   (indented_string_expression
     (string_fragment) @_lang (#lua-match? @_lang "^%s*#!.*/.") ; use lua regex for consistency with the next line
@@ -31,43 +35,36 @@
 
 ; Fish
 (binding
-  attrpath: (_) @_path (#match? @_path "((interactive|login)S|s)hellInit$")
+  attrpath: (_) @_path (#hmts-path? @_path "programs" "fish" "((interactive|login)S|s)hellInit$")
   expression: (_ (string_fragment) @fish)
-  ; TODO: find a way to have proper regex support here
-  (#hmts-path? @_path "programs" "fish" ".*")
 ) @combined
 
 (binding
-  attrpath: (_) @_path
+  attrpath: (_) @_path (#hmts-path? @_path "programs" "fish" "functions")
   expression: (attrset_expression
     (binding_set
       binding: (binding
         attrpath: (_)
         expression: (_ (string_fragment) @fish)
   )))
-  (#hmts-path? @_path "programs" "fish" "functions")
 ) @combined
 
 ; Bash
 (binding
-  attrpath: (_) @_path (#match? @_path "(init|logout|profile|bashrc)Extra$")
+  attrpath: (_) @_path (#hmts-path? @_path "programs" "bash" "(init|logout|profile|bashrc)Extra$")
   expression: (_ (string_fragment) @bash)
-  ; TODO: find a way to have proper regex support here
-  (#hmts-path? @_path "programs" "bash" ".*")
 ) @combined
 
 ; Zsh
 (binding
+  attrpath: (_) @_path
   ; eww
-  attrpath: (_) @_path (#match? @_path "(completionInit|envExtra|initExtra|initExtraBeforeCompInit|initExtraFirst|loginExtra|logoutExtra|profileExtra)$")
+  (#hmts-path? @_path "programs" "bash" "(completionInit|envExtra|initExtra|initExtraBeforeCompInit|initExtraFirst|loginExtra|logoutExtra|profileExtra)$")
   expression: (_ (string_fragment) @bash)
-  ; TODO: find a way to have proper regex support here
-  (#hmts-path? @_path "programs" "bash" ".*")
 ) @combined
 
 ; Firefox
 (binding
-  attrpath: (_) @_path
+  attrpath: (_) @_path (#hmts-path? @_path "programs" "firefox" "profiles" ".*" "userChrome")
   expression: (_ (string_fragment) @css)
-  (#hmts-path? @_path "programs" "firefox" "profiles" ".*" "userChrome")
 ) @combined
