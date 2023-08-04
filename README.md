@@ -27,7 +27,7 @@ Default behavior | With hmts.nvim
 
 > [!Important]
 > Make sure all the languages you embed are *actually installed in treesitter*, with `:TSInstall`. Don't be me, don't
-> spend hours trying to figure out while your injections don't work when the parsers aren't even installed.
+> spend hours trying to figure out why your injections don't work when the parsers aren't even installed.
 
 ## Installation
 
