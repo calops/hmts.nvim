@@ -28,7 +28,7 @@
   ) @injection.content
   (#gsub! @_lang ".*#!%s*%S*/(%S+).*" "%1")
   (#inject-language! @_lang)
-  (#offset! @injection.content 0 2 0 -2)
+  (#set! "injection.include-children" true)
 ) @combined
 
 ; Fish

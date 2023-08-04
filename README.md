@@ -69,8 +69,9 @@ for most things. If it isn't, don't hesitate to open an issue.
 
 ## TODO
 
-- [ ] Better description in the readme
-- [ ] Screenshots in the readme
+- [x] Better description in the readme
+- [x] Screenshots in the readme
 - [ ] Benchmark the performance impact and see if the queries can be optimized
+- [ ] Find a better way to handle nix nodes among string fragments in shebang scripts
 - [ ] Check the stuff that's already done on the to-do list
-- [ ] Add stuff to the todo list
+- [ ] Add stuff to the to-do list
