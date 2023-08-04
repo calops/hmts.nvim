@@ -2,21 +2,19 @@
 
 ; home.file.*.text
 (binding
-  attrpath: (_) @_path
+  attrpath: (_) @_path (#hmts-path? @_path "home" "file" ".*" "text")
   expression: (_
     (string_fragment) @injection.content
   )
-  (#hmts-path? @_path "home" "file" ".*" "text")
   (#hmts-inject! @_path)
 ) @combined
 
 ; xdg.configFile.*.text
 (binding
-  attrpath: (_) @_path
+  attrpath: (_) @_path (#hmts-path? @_path "xdg" "configFile" ".*" "text")
   expression: (_
     (string_fragment) @injection.content
   )
-  (#hmts-path? @_path "xdg" "configFile" ".*" "text")
   (#hmts-inject! @_path)
 ) @combined
 
