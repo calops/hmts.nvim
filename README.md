@@ -17,7 +17,8 @@ Here's an example of the difference it can make:
 
 Default behavior | With hmts.nvim
 ---|---
-![image](https://github.com/calops/hmts.nvim/assets/4097716/cb71e7e2-f85c-4380-b2ff-127738230d63)|![image](https://github.com/calops/hmts.nvim/assets/4097716/220cd490-9bf2-44e8-962e-59f548861cf4)
+![before](https://github.com/calops/hmts.nvim/assets/4097716/44ef5636-292e-4932-bcc7-8c6554fca86e)|![after](https://github.com/calops/hmts.nvim/assets/4097716/16c6a094-8a01-4e6c-b09f-573bb074d8a0)
+
 
 ## Requirements
 
