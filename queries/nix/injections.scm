@@ -28,7 +28,7 @@
     (_)*
   ) @injection.content
   (#gsub! @injection.language ".*#!%s*%S*/(%S+).*" "%1")
-  (#set! "injection.include-children" true)
+  (#set! injection.include-children)
 ) @combined
 
 ; Explicit annotations in comments:
@@ -67,7 +67,6 @@
 ; Zsh
 (binding
   attrpath: (_) @_path
-  ; eww
   (#hmts-path? @_path "programs" "bash" "(completionInit|envExtra|initExtra|initExtraBeforeCompInit|initExtraFirst|loginExtra|logoutExtra|profileExtra)$")
   expression: (_ (string_fragment) @bash)
 ) @combined

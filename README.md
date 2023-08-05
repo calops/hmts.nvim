@@ -22,7 +22,7 @@ Default behavior | With hmts.nvim
 
 ## Requirements
 
-- Neovim `0.9` (probably works on older versions, if anybody wants to check)
+- Neovim `0.9`
 - Have [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) enabled
 
 > [!Important]
@@ -53,8 +53,95 @@ You're done already.
 
 ## Usage
 
-Just live your life. There is nothing to do, the plugin works out-of-the-box on everything it can identify in your `nix`
-files.
+### Automatic language detection
+
+The following features work out-of-the-box without any user intervention.
+
+#### From filename
+
+When writing a file's content directly with `home.file` or `xdg.configFile`, we can infer the language from the
+specified filename, if possible:
+
+```nix
+# Also works with `home.file.*.text`
+xdg.configFile."myprogram/myScript.py".text = ''
+    print("foo")
+'';
+```
+
+#### From arbitrary program options
+
+Some programs have options asking for code in specific languages. Some of them are implemented in this plugin to
+automatically setup these arbitrary injections.
+
+<details>
+    <summary>Here's the full list of the currently implemented options.</summary>
+
+* Bash (bash language)
+    - `programs.bash.bashrcExtra`
+    - `programs.bash.initExtra`
+    - `programs.bash.logoutExtra`
+    - `programs.bash.profileExtra`
+* Fish (fish language)
+    - `programs.fish.functions.*`
+    - `programs.fish.interactiveShellInit`
+    - `programs.fish.loginShellInit`
+    - `programs.fish.shellInit`
+* Zsh (bash language)
+    - `programs.bash.completionInit`
+    - `programs.bash.envExtra`
+    - `programs.bash.initExtraBeforeCompInit`
+    - `programs.bash.initExtraFirst`
+    - `programs.bash.initExtra`
+    - `programs.bash.loginExtra`
+    - `programs.bash.logoutExtra`
+    - `programs.bash.profileExtra`
+* Firefox (css language)
+    - `programs.firefox.profiles.*.userChrome`
+</details>
+
+> [!Warning]
+> These implementations are *not* exhaustive and may eventually be broken if the program's options change. If that
+> happens, please use [explicit annotations](#explicit-annotations) to set the injection.
+
+> [!Note]
+> Contributions to implement new programs or fix existing ones are welcome.
+
+### Explicit annotations
+
+#### From a shebang expression
+
+For languages that support `#` comments, if you provide a shebang expression, the language will be inferred whenever
+possible:
+
+```nix
+home.activation.neovim = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    #! /bin/bash
+    echo "Syncing neovim plugins"
+    PATH="$PATH:${pkgs.git}/bin" $DRY_RUN_CMD ${lib.getExe my.neovim} --headless "+Lazy! restore" +qa
+'';
+```
+
+#### From a preceding comment
+
+For all the cases not handled by the other features, you can specify the language yourself with a comment right before
+the string that should be injected:
+
+```nix
+my_lua_script = /* lua */ ''
+    require("foo")
+    return {
+        bar = foo.bar
+    }
+'';
+
+my_python_script =
+    # python
+    ''
+    import foo
+    print(foo.bar)
+    '';
+```
 
 ## FAQ
 
@@ -66,14 +153,13 @@ compelled to. It won't break anything.
 ## Contribute
 
 Very few programs are handled right now, but I welcome any addition. Just look through 
-[the injections file](./queries/nix/injections.scm) and copy what's already there. It should be pretty straightforward 
+[the injections file](./queries/nix/injections.scm) and copy what's already there. It should be pretty straightforward
 for most things. If it isn't, don't hesitate to open an issue.
 
 ## TODO
 
 - [x] Better description in the readme
-- [x] Screenshots in the readme
+- [ ] Screenshots in the readme
 - [ ] Benchmark the performance impact and see if the queries can be optimized
 - [ ] Find a better way to handle nix nodes among string fragments in shebang scripts
 - [ ] Check the stuff that's already done on the to-do list
-- [ ] Add stuff to the to-do list
