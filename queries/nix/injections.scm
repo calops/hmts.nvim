@@ -18,17 +18,28 @@
   (#hmts-inject! @_path)
 ) @combined
 
-; ''
-; #! /bin/lang
-; ''
+; Strings with shebang expressions:
+;   ''
+;   #! /bin/lang
+;   ''
 (
   (indented_string_expression
-    (string_fragment) @_lang (#lua-match? @_lang "^%s*#!.*/.") ; use lua regex for consistency with the next line
+    (string_fragment) @injection.language (#lua-match? @injection.language "^%s*#!.*/.")
     (_)*
   ) @injection.content
-  (#gsub! @_lang ".*#!%s*%S*/(%S+).*" "%1")
-  (#inject-language! @_lang)
+  (#gsub! @injection.language ".*#!%s*%S*/(%S+).*" "%1")
   (#set! "injection.include-children" true)
+) @combined
+
+; Explicit annotations in comments:
+;   /* lang */ ''script''
+; or:
+;   # lang
+;   ''script''
+((comment) @injection.language
+  .
+  (_ (string_fragment) @injection.content)
+  (#gsub! @injection.language "[/*#%s]" "")
 ) @combined
 
 ; Fish
