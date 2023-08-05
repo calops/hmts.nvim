@@ -149,8 +149,13 @@ end
 local function hmts_inject_handler(match, _, bufnr, predicate, metadata)
 	local path_node = match[predicate[2]]
 	local filename = find_filename_in_parent_node(path_node, bufnr)
-	local ext = vim.fn.fnamemodify(filename, ":e")
-	local lang = vim.treesitter.language.get_lang(ext)
+	local alias = vim.filetype.match({ filename = filename })
+
+	if alias == nil then
+		return
+	end
+
+	local lang = vim.treesitter.language.get_lang(alias)
 	metadata["injection.language"] = lang
 end
 
