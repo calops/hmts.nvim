@@ -24,9 +24,10 @@
 ;   ''
 (
   (indented_string_expression
-    (string_fragment) @injection.language (#lua-match? @injection.language "^%s*#!.*/.")
+    (string_fragment) @injection.language (#lua-match? @injection.language "^%s*#!")
     (_)*
   ) @injection.content
+  (#gsub! @injection.language ".*#!.*env (%S+).*" "%1")
   (#gsub! @injection.language ".*#!%s*%S*/(%S+).*" "%1")
   (#set! injection.include-children)
 ) @combined
