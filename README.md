@@ -38,7 +38,6 @@ Install `calops/hmts.nvim` with your favorite package manager.
 {
     "calops/hmts.nvim",
     version = "*",
-    ft = "nix",
 }
 ```
 
