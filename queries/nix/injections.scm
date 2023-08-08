@@ -77,3 +77,9 @@
   attrpath: (_) @_path (#hmts-path? @_path "programs" "firefox" "profiles" ".*" "userChrome")
   expression: (_ (string_fragment) @css)
 ) @combined
+
+; Wezterm
+(binding
+  attrpath: (_) @_path (#hmts-path? @_path "programs" "wezterm" "extraConfig")
+  expression: (_ (string_fragment) @lua)
+) @combined
