@@ -83,6 +83,7 @@ automatically setup these arbitrary injections.
     - `programs.bash.profileExtra`
 * Fish (fish language)
     - `programs.fish.functions.*`
+    - `programs.fish.functions.*.body`
     - `programs.fish.interactiveShellInit`
     - `programs.fish.loginShellInit`
     - `programs.fish.shellInit`
@@ -97,6 +98,8 @@ automatically setup these arbitrary injections.
     - `programs.bash.profileExtra`
 * Firefox (css language)
     - `programs.firefox.profiles.*.userChrome`
+* Wezterm (lua language)
+    - `programs.wezterm.extraConfig`
 </details>
 
 > [!Warning]
