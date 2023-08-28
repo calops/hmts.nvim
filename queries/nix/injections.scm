@@ -51,17 +51,13 @@
 ) @injection.combined
 
 (binding
-  attrpath: (_) @_path (#hmts-path? @_path "programs" "fish" "(shellAliases|shellAbbrs|functions)")
-  expression: (attrset_expression
-    (binding_set
-      binding: (binding
-        attrpath: (_)
-        expression: (_ (string_fragment) @injection.content @injection.combined)
-  )))
-  (#set! injection.language "fish")
-)
-(binding
   attrpath: (_) @_path (#hmts-path? @_path "programs" "fish" "(shellAliases|shellAbbrs|functions)" ".*" "body")
+  expression: (_ (string_fragment) @injection.content)
+  (#set! injection.language "fish")
+) @injection.combined
+
+(binding
+  attrpath: (_) @_path (#hmts-path? @_path "programs" "fish" "(shellAliases|shellAbbrs|functions)" ".*")
   expression: (_ (string_fragment) @injection.content)
   (#set! injection.language "fish")
 ) @injection.combined
