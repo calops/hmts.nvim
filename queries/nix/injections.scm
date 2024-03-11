@@ -96,3 +96,11 @@
   (#set! injection.language "lua")
   (#set! injection.combined)
 )
+
+; Waybar
+(binding
+  attrpath: (_) @_path (#hmts-path? @_path "programs" "waybar" "style")
+  expression: (_ (string_fragment) @injection.content)
+  (#set! injection.language "css")
+  (#set! injection.combined)
+)
