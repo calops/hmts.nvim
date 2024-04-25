@@ -89,6 +89,14 @@
   (#set! injection.combined)
 )
 
+; Polkit
+(binding
+  attrpath: (_) @_path (#hmts-path? @_path "security" "polkit" "extraConfig")
+  expression: (_ (string_fragment) @injection.content)
+  (#set! injection.language "javascript")
+  (#set! injection.combined)
+)
+
 ; Wezterm
 (binding
   attrpath: (_) @_path (#hmts-path? @_path "programs" "wezterm" "extraConfig")
