@@ -96,6 +96,11 @@ end
 local function find_filename_in_parent_node(path_node, bufnr)
 	local text = vim.treesitter.get_node_text(path_node, bufnr)
 	local _, _, filename = string.find(text, "(.*)%.text$")
+
+	if filename == nil then
+		return nil
+	end
+
 	filename = string.sub(filename, 2, -2)
 
 	if filename ~= nil then
